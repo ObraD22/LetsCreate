@@ -43,7 +43,7 @@ export const FEATURED_VIDEOS: VideoItem[] = [
     category: 'Cinematic Save the Date',
     tagline: 'Coastal breeze, sunlit promises, and timeless romance',
     description:
-      'An intimate and heartfelt cinematic teaser directed by Daniel Obra, capturing Dan and Dea’s genuine chemistry, golden coastal glow, and lifelong promises.',
+      'An intimate and heartfelt cinematic teaser directed by Obra Creations, capturing Dan and Dea’s genuine chemistry, golden coastal glow, and lifelong promises.',
     youtubeUrl: 'https://youtu.be/OHwDqL_LNjI',
     thumbnail: 'https://i.ytimg.com/vi/OHwDqL_LNjI/maxresdefault.jpg',
     durationEstimate: 'Cinematic Film',
@@ -64,7 +64,7 @@ export const FEATURED_VIDEOS: VideoItem[] = [
     category: 'Cinematic Save the Date',
     tagline: 'Emotional narrative, candid laughter, and heirloom storytelling',
     description:
-      'A soulful, story-driven celebration crafted by Daniel Obra, weaving together candid laughter, quiet embraces, and the authentic anticipation of marriage.',
+      'A soulful, story-driven celebration crafted by Obra Creations, weaving together candid laughter, quiet embraces, and the authentic anticipation of marriage.',
     youtubeUrl: 'https://youtu.be/TRhTQ1C58-8',
     thumbnail: 'https://i.ytimg.com/vi/TRhTQ1C58-8/maxresdefault.jpg',
     durationEstimate: 'Cinematic Film',
