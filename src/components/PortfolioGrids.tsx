@@ -77,7 +77,7 @@ export const PortfolioGrids: React.FC<PortfolioGridsProps> = ({ onSelectPhoto })
                 <div
                   key={photo.id}
                   onClick={() => onSelectPhoto(photo)}
-                  className="group relative bg-[#13151c] rounded-xl overflow-hidden border border-white/10 hover:border-sky-400/50 transition-all duration-300 shadow-md hover:shadow-2xl cursor-pointer flex flex-col"
+                  className="portfolio-photo-card group relative bg-[#13151c] rounded-xl overflow-hidden border border-white/10 hover:border-sky-400/50 transition-all duration-300 shadow-md hover:shadow-2xl cursor-pointer flex flex-col"
                 >
                   {/* Photo Container */}
                   <div className="relative aspect-[4/3] sm:aspect-[4/3] overflow-hidden bg-stone-900">
@@ -85,11 +85,11 @@ export const PortfolioGrids: React.FC<PortfolioGridsProps> = ({ onSelectPhoto })
                       src={getImageUrl(photo.src)}
                       alt={photo.title}
                       loading="lazy"
-                      className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="photo-reveal-image w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                     />
 
                     {/* Quick Lightbox Action Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
+                    <div className="portfolio-photo-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
                       <span className="text-xs text-sky-200 font-mono flex items-center gap-1.5">
                         <Maximize2 className="w-3.5 h-3.5" />
                         <span>View High-Res</span>
@@ -101,7 +101,7 @@ export const PortfolioGrids: React.FC<PortfolioGridsProps> = ({ onSelectPhoto })
 
                     {/* Camera Badge in Top Right */}
                     <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="text-[10px] font-mono text-stone-200 bg-black/70 px-2 py-0.5 rounded backdrop-blur-sm border border-white/10">
+                      <span className="portfolio-photo-exif text-[10px] font-mono text-stone-200 bg-black/70 px-2 py-0.5 rounded backdrop-blur-sm border border-white/10">
                         {photo.exif.camera}
                       </span>
                     </div>

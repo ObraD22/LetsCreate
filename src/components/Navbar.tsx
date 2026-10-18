@@ -1,31 +1,37 @@
 import React, { useState } from 'react';
 import { Camera, Mail, Menu, X, ArrowLeft, Phone, Facebook } from 'lucide-react';
 import { getImageUrl } from '../lib/imageAssets';
+import { ThemeToggle } from './ThemeToggle';
 
 interface NavbarProps {
   onShowWelcome: () => void;
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
   activeSection?: string;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onShowWelcome }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onShowWelcome, theme, onToggleTheme }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#0c0d11]/90 backdrop-blur-md border-b border-white/10 transition-colors">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-8">
+      <div className="max-w-7xl 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-3 sm:gap-8">
         {/* Zone 1: Brand title, single line */}
-        <a
-          href="#hero"
-          className="flex items-center gap-3 text-lg md:text-xl font-serif-luxury tracking-wider text-white font-semibold whitespace-nowrap shrink-0 group"
-        >
-          <span className="w-8 h-8 rounded-full border border-sky-400/40 bg-white flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform p-0.5">
-            <img src={getImageUrl('/src/assets/images/Logo.png')} alt="Obra Creations Logo" className="w-full h-full object-contain" />
-          </span>
-          <span>Obra Creations</span>
-        </a>
+        <div className="flex items-center gap-3 shrink-0">
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+          <a
+            href="#hero"
+            className="flex items-center gap-3 text-lg md:text-xl font-serif-luxury tracking-wider text-white font-semibold whitespace-nowrap group"
+          >
+            <span className="w-8 h-8 rounded-full border border-sky-400/40 bg-white flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform p-0.5">
+              <img src={getImageUrl('/src/assets/images/Logo.png')} alt="Obra Creations Logo" className="w-full h-full object-contain" />
+            </span>
+            <span>Obra Creations</span>
+          </a>
+        </div>
 
         {/* Zone 2: 4-5 single-line clean navigation links */}
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-stone-300">
+        <nav className="hidden xl:flex items-center gap-4 2xl:gap-7 text-sm font-medium text-stone-300">
           <button
             onClick={onShowWelcome}
             className="text-stone-400 hover:text-sky-300 transition-colors whitespace-nowrap shrink-0 flex items-center gap-1 cursor-pointer"
@@ -72,21 +78,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onShowWelcome }) => {
         </nav>
 
         {/* Zone 3: Direct Studio Contact Quick Links */}
-        <div className="hidden md:flex items-center gap-3 shrink-0">
+        <div className="hidden xl:flex items-center gap-3 shrink-0">
           <a
             href="tel:+639764585099"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono text-stone-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 transition-colors"
+            className="inline-flex items-center justify-center p-2 text-stone-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 transition-colors"
             title="Call Daniel Obra"
+            aria-label="Call Daniel Obra at +63 976 458 5099"
           >
             <Phone className="w-3.5 h-3.5 text-sky-400" />
-            <span>+63 976 458 5099</span>
           </a>
 
           <a
             href="https://www.facebook.com/ObraCreations2019"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 text-stone-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 transition-colors"
+            className="hidden 2xl:block p-2 text-stone-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 transition-colors"
             title="Visit Facebook Page"
           >
             <Facebook className="w-3.5 h-3.5 text-[#1877F2]" />
@@ -102,7 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onShowWelcome }) => {
         </div>
 
         {/* Mobile menu hamburger */}
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex xl:hidden items-center gap-2">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-stone-300 hover:text-white rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"

@@ -66,7 +66,7 @@ export const Footer: React.FC<FooterProps> = ({ onShowWelcome }) => {
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
           <p>© {new Date().getFullYear()} Obra Creations by Daniel Obra. All rights reserved.</p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
             <a
               href={`tel:${BIO_DATA.phone}`}
               className="text-stone-400 hover:text-white transition-colors"
@@ -76,7 +76,7 @@ export const Footer: React.FC<FooterProps> = ({ onShowWelcome }) => {
             <span>•</span>
             <a
               href={`mailto:${BIO_DATA.email}`}
-              className="text-stone-400 hover:text-white transition-colors"
+              className="break-all text-stone-400 hover:text-white transition-colors"
             >
               {BIO_DATA.email}
             </a>

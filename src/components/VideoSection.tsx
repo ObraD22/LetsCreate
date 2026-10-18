@@ -12,6 +12,7 @@ import {
   Share2,
   Tv
 } from 'lucide-react';
+import { copyTextToClipboard } from '../lib/clipboard';
 
 export interface VideoItem {
   id: string;
@@ -105,9 +106,9 @@ export const VideoSection: React.FC = () => {
     }
   };
 
-  const handleCopyLink = (url: string, id: string) => {
-    navigator.clipboard.writeText(url);
-    setCopiedLink(id);
+  const handleCopyLink = async (url: string, id: string) => {
+    const wasCopied = await copyTextToClipboard(url);
+    setCopiedLink(wasCopied ? id : `failed:${id}`);
     setTimeout(() => setCopiedLink(null), 2500);
   };
 
@@ -303,6 +304,8 @@ export const VideoSection: React.FC = () => {
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                         <span className="text-emerald-300">Link Copied!</span>
                       </>
+                    ) : copiedLink === `failed:${activeVideo.id}` ? (
+                      <span className="text-rose-300">Copy failed</span>
                     ) : (
                       <>
                         <Share2 className="w-3.5 h-3.5" />
@@ -349,7 +352,7 @@ export const VideoSection: React.FC = () => {
             return (
               <div
                 key={video.id}
-                className={`group relative rounded-2xl overflow-hidden bg-[#12141c] border transition-all duration-300 flex flex-col ${
+                className={`video-catalog-card group relative rounded-2xl overflow-hidden bg-[#12141c] border transition-all duration-300 flex flex-col ${
                   isCurrentlyActive
                     ? 'border-sky-400/80 shadow-[0_0_25px_rgba(56,189,248,0.15)] ring-1 ring-sky-400/40'
                     : 'border-white/10 hover:border-white/30'
@@ -375,7 +378,7 @@ export const VideoSection: React.FC = () => {
                     src={video.thumbnail}
                     alt={video.title}
                     loading="lazy"
-                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="photo-reveal-image w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:via-black/10 transition-colors" />
 

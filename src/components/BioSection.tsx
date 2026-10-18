@@ -15,15 +15,15 @@ export const BioSection: React.FC = () => {
               <div className="absolute -inset-4 bg-gradient-to-tr from-sky-500/20 via-transparent to-white/5 rounded-2xl transform -rotate-1" />
 
               {/* Main portrait image */}
-              <div className="relative rounded-xl overflow-hidden border border-white/15 shadow-2xl bg-stone-900 aspect-[4/5]">
+              <div className="bio-portrait-frame relative rounded-xl overflow-hidden border border-white/15 shadow-2xl bg-stone-900 aspect-[4/5]">
                 <img
                   src={getImageUrl(BIO_DATA.portraitSrc)}
                   alt="Daniel Obra - Founder & Principal Artist of Obra Creations"
-                  className="w-full h-full object-cover object-center filter contrast-105"
+                  className="photo-reveal-image w-full h-full object-cover object-center filter contrast-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
-                <div className="absolute bottom-6 left-6 right-6 text-white">
+                <div className="bio-portrait-caption absolute bottom-6 left-6 right-6 text-white">
                   <span className="text-xs uppercase tracking-widest text-sky-300 font-mono block mb-1">
                     Founder & Lead Cinematographer
                   </span>

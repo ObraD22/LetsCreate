@@ -95,8 +95,8 @@ export const PORTFOLIO_CATEGORIES: PortfolioCategory[] = [
       },
     ],
   },
-    {
-    id: 'folder-weddings',
+  {
+    id: 'folder-weddings-malachi-vash',
     title: 'Weddings',
     slug: 'weddings',
     folderName: 'Portfolio / Malachi and Vashel',

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, Copy, Check, Send, Sparkles, MapPin, Clock, ExternalLink } from 'lucide-react';
 import { BIO_DATA } from '../data/portfolioData';
+import { copyTextToClipboard } from '../lib/clipboard';
 
 export const ContactSection: React.FC = () => {
   const [copiedItem, setCopiedItem] = useState<string | null>(null);
@@ -23,9 +24,9 @@ export const ContactSection: React.FC = () => {
     email: BIO_DATA.email,
   };
 
-  const handleCopy = (text: string, label: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedItem(label);
+  const handleCopy = async (text: string, label: string) => {
+    const wasCopied = await copyTextToClipboard(text);
+    setCopiedItem(wasCopied ? label : `failed:${label}`);
     setTimeout(() => setCopiedItem(null), 2500);
   };
 
@@ -66,7 +67,7 @@ export const ContactSection: React.FC = () => {
             <div className="space-y-3.5">
               {/* Contact Number Card */}
               <div className="p-5 rounded-2xl bg-[#13151e] border border-white/10 hover:border-sky-400/30 transition-colors">
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                   <div className="flex items-center gap-2.5">
                     <div className="w-8 h-8 rounded-lg bg-sky-400/10 border border-sky-400/20 flex items-center justify-center text-sky-400">
                       <Phone className="w-4 h-4" />
@@ -101,6 +102,8 @@ export const ContactSection: React.FC = () => {
                         <Check className="w-3.5 h-3.5 text-emerald-400" />
                         <span className="text-emerald-400 text-xs">Copied</span>
                       </>
+                    ) : copiedItem === 'failed:phone' ? (
+                      <span className="text-rose-300 text-xs">Failed</span>
                     ) : (
                       <>
                         <Copy className="w-3.5 h-3.5" />
@@ -113,7 +116,7 @@ export const ContactSection: React.FC = () => {
 
               {/* Facebook Card */}
               <div className="p-5 rounded-2xl bg-[#13151e] border border-white/10 hover:border-sky-400/30 transition-colors">
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                   <div className="flex items-center gap-2.5">
                     <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
                       {/* Facebook custom crisp SVG */}
@@ -153,6 +156,8 @@ export const ContactSection: React.FC = () => {
                         <Check className="w-3.5 h-3.5 text-emerald-400" />
                         <span className="text-emerald-400 text-xs">Copied</span>
                       </>
+                    ) : copiedItem === 'failed:facebook' ? (
+                      <span className="text-rose-300 text-xs">Failed</span>
                     ) : (
                       <>
                         <Copy className="w-3.5 h-3.5" />
@@ -165,7 +170,7 @@ export const ContactSection: React.FC = () => {
 
               {/* E-Mail Card */}
               <div className="p-5 rounded-2xl bg-[#13151e] border border-white/10 hover:border-sky-400/30 transition-colors">
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                   <div className="flex items-center gap-2.5">
                     <div className="w-8 h-8 rounded-lg bg-sky-400/10 border border-sky-400/20 flex items-center justify-center text-sky-400">
                       <Mail className="w-4 h-4" />
@@ -200,6 +205,8 @@ export const ContactSection: React.FC = () => {
                         <Check className="w-3.5 h-3.5 text-emerald-400" />
                         <span className="text-emerald-400 text-xs">Copied</span>
                       </>
+                    ) : copiedItem === 'failed:email' ? (
+                      <span className="text-rose-300 text-xs">Failed</span>
                     ) : (
                       <>
                         <Copy className="w-3.5 h-3.5" />

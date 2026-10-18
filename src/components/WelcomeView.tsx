@@ -1,29 +1,34 @@
 import React from 'react';
 import { ArrowRight, Camera, Sparkles, Film, Heart } from 'lucide-react';
 import { getImageUrl } from '../lib/imageAssets';
+import { ThemeToggle } from './ThemeToggle';
 
 interface WelcomeViewProps {
   onProceed: () => void;
+  theme: 'light' | 'dark';
+  isExiting: boolean;
+  onToggleTheme: () => void;
 }
 
-export const WelcomeView: React.FC<WelcomeViewProps> = ({ onProceed }) => {
+export const WelcomeView: React.FC<WelcomeViewProps> = ({ onProceed, theme, isExiting, onToggleTheme }) => {
   return (
-    <div className="relative min-h-screen w-full bg-[#090a0d] text-white flex flex-col justify-between overflow-hidden">
+    <div data-theme={theme} className={`welcome-view relative min-h-screen w-full bg-[#090a0d] text-white flex flex-col justify-between overflow-hidden${isExiting ? ' welcome-view-exiting' : ''}`}>
       {/* Background cinematic imagery with measured scrim */}
       <div className="absolute inset-0 z-0">
         <img
           src={getImageUrl('/src/assets/images/WelcomeBG.jpg')}
           alt="Obra Creations Cinematic Photography"
-          className="w-full h-full object-cover object-center filter brightness-40 contrast-110 scale-105 transition-transform duration-1000 ease-out"
+          className="welcome-background-image w-full h-full object-cover object-center filter brightness-40 contrast-110 scale-105 transition-transform duration-1000 ease-out"
         />
         {/* Subtle gradient vignette to maximize contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090a0d]/90 via-[#090a0d]/75 to-[#090a0d]/95 backdrop-blur-[2px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#090a0d]/50 to-[#090a0d]" />
+        <div className="welcome-scrim absolute inset-0 bg-gradient-to-b from-[#090a0d]/90 via-[#090a0d]/75 to-[#090a0d]/95 backdrop-blur-[2px]" />
+        <div className="welcome-vignette absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#090a0d]/50 to-[#090a0d]" />
       </div>
 
       {/* Top bar branding */}
-      <header className="relative z-10 w-full max-w-6xl mx-auto px-6 py-8 flex items-center justify-between border-b border-white/10">
+      <header className="welcome-header relative z-10 w-full max-w-6xl mx-auto px-6 py-8 flex items-center justify-between border-b border-white/10">
         <div className="flex items-center gap-3">
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           <div className="w-10 h-10 rounded-full border border-sky-400/40 bg-white/10 backdrop-blur-md flex items-center justify-center overflow-hidden">
             <img src={getImageUrl('/src/assets/images/Logo.png')} alt="Obra Creations Logo" className="w-full h-full object-contain p-1" style={{ backgroundColor: '#FFFFFF' }}/>
           </div>
@@ -45,8 +50,8 @@ export const WelcomeView: React.FC<WelcomeViewProps> = ({ onProceed }) => {
       </header>
 
       {/* Main welcome statement container */}
-      <main className="relative z-10 w-full max-w-4xl mx-auto px-6 py-12 md:py-16 my-auto">
-        <div className="bg-[#12141a]/85 border border-white/10 rounded-2xl p-8 md:p-12 shadow-2xl backdrop-blur-xl">
+      <main className="welcome-main relative z-10 w-full max-w-4xl mx-auto px-6 py-12 md:py-16 my-auto">
+        <div className="welcome-card bg-[#12141a]/85 border border-white/10 rounded-2xl p-8 md:p-12 shadow-2xl backdrop-blur-xl">
           {/* Kicker badge */}
           <div className="flex items-center gap-2 mb-6">
             <span className="text-sky-400 text-xs uppercase tracking-[0.25em] font-semibold">
@@ -83,6 +88,7 @@ export const WelcomeView: React.FC<WelcomeViewProps> = ({ onProceed }) => {
           <div className="mt-10 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
             <button
               onClick={onProceed}
+              disabled={isExiting}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-medium text-sm md:text-base rounded-xl shadow-lg shadow-sky-500/20 hover:shadow-sky-500/40 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer group"
             >
               <span>Proceed to Main Portfolio</span>
@@ -111,7 +117,7 @@ export const WelcomeView: React.FC<WelcomeViewProps> = ({ onProceed }) => {
       </main>
 
       {/* Footer preview strip */}
-      <footer className="relative z-10 w-full max-w-6xl mx-auto px-6 py-6 border-t border-white/10 text-stone-400 text-xs flex flex-col sm:flex-row items-center justify-between gap-4 font-sans-clean">
+      <footer className="welcome-footer relative z-10 w-full max-w-6xl mx-auto px-6 py-6 border-t border-white/10 text-stone-400 text-xs flex flex-col sm:flex-row items-center justify-between gap-4 font-sans-clean">
         <p>© {new Date().getFullYear()} Obra Creations by Daniel Obra. All rights reserved.</p>
         <div className="flex flex-wrap items-center gap-3 text-stone-400 text-xs font-mono">
           <a href="tel:+639764585099" className="hover:text-white transition-colors">

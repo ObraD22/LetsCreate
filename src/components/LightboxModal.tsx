@@ -31,7 +31,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
+      className="lightbox-overlay fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
       onClick={onClose}
     >
       {/* Top action bar */}
